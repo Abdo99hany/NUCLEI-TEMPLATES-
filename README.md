@@ -1,5 +1,6 @@
-# NUCLEI-TEMPLATES-
-MY NUCLEI TEMPLATES 
 
+sublist3r -d example.com -o results.txt
+amass enum -passive -d example.com -o results.txt
 
-I WILL PUT THINGS NOOW BITCHES 
+cat domains.txt | httpx -sc -title -server -screenshot -o results.txt
+screen shots 

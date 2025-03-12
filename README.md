@@ -36,3 +36,21 @@ alaywas
 1 ع
 رد
 مشاركة \
+
+
+
+
+
+subfinder -d target.com | tee subdomains.txt
+assetfinder --subs-only target.com | tee -a subdomains.txt
+amass enum -passive -d target.com | tee -a subdomains.txt
+curl -s "https://crt.sh/?q=%25.target.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u | tee -a subdomains.txt
+
+sort -u subdomains.txt -o subdomains.txt
+cat subdomains.txt | httpx -silent -o live_subdomains.txt
+
+
+katana -u live_subdomains.txt -o endpoints.txt
+
+cat live_subdomains.txt | waybackurls | tee -a urls.txt
+
